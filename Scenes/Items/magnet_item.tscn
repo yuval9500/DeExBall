@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceg172s3jueau"]
+
+[ext_resource type="PackedScene" uid="uid://uc7ws8y4t0vo" path="res://Scenes/Items/base_item.tscn" id="1_22kmo"]
+[ext_resource type="Texture2D" uid="uid://14ei2quonylq" path="res://Sprites/Items/Magnet.png" id="2_8dg0n"]
+[ext_resource type="Script" path="res://Scenes/Items/magnet_item.gd" id="2_yppuv"]
+
+[node name="MagnetItem" instance=ExtResource("1_22kmo")]
+script = ExtResource("2_yppuv")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_8dg0n")

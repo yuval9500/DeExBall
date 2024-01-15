@@ -1,0 +1,113 @@
+[gd_scene load_steps=15 format=3 uid="uid://bwh3bvqd6idbr"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/level.gd" id="1_f141i"]
+[ext_resource type="Texture2D" uid="uid://2x0gydhkjilw" path="res://Sprites/UI/Background.png" id="1_rrpw8"]
+[ext_resource type="PackedScene" uid="uid://j501bbp4p3ss" path="res://Scenes/Blocks/block.tscn" id="3_35t3d"]
+[ext_resource type="PackedScene" uid="uid://crrgmxhsx4xxj" path="res://Scenes/Player/player.tscn" id="3_diqya"]
+[ext_resource type="Texture2D" uid="uid://ihc8r0pl338g" path="res://Sprites/Player/Player.png" id="3_xct2j"]
+[ext_resource type="Texture2D" uid="uid://cocvv0b3ntifq" path="res://Sprites/Items/Laser.png" id="7_0aly6"]
+[ext_resource type="PackedScene" uid="uid://c22s8buq55iyt" path="res://Scenes/Ball/ball.tscn" id="7_36tih"]
+[ext_resource type="Texture2D" uid="uid://14ei2quonylq" path="res://Sprites/Items/Magnet.png" id="8_mos06"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cencu"]
+size = Vector2(20, 800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slmsh"]
+size = Vector2(360, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmu0n"]
+size = Vector2(360, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lmc72"]
+font_size = 51
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_jrivr"]
+resource_name = "Blocks"
+scenes/1/scene = ExtResource("3_35t3d")
+
+[sub_resource type="TileSet" id="TileSet_370wu"]
+tile_size = Vector2i(35, 12)
+sources/0 = SubResource("TileSetScenesCollectionSource_jrivr")
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_f141i")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(180, 400)
+texture = ExtResource("1_rrpw8")
+metadata/_edit_lock_ = true
+
+[node name="Borders" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 43
+
+[node name="Left" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-10, 400)
+shape = SubResource("RectangleShape2D_cencu")
+
+[node name="Right" type="CollisionShape2D" parent="Borders"]
+position = Vector2(370, 399)
+shape = SubResource("RectangleShape2D_cencu")
+
+[node name="Top" type="CollisionShape2D" parent="Borders"]
+position = Vector2(180, -10)
+shape = SubResource("RectangleShape2D_slmsh")
+
+[node name="GameOverZone" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverZone"]
+position = Vector2(180, 810)
+shape = SubResource("RectangleShape2D_xmu0n")
+
+[node name="PsudoUI" type="Node2D" parent="."]
+
+[node name="Lives" type="Sprite2D" parent="PsudoUI"]
+position = Vector2(340, 8)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_xct2j")
+
+[node name="Lives2" type="Sprite2D" parent="PsudoUI"]
+position = Vector2(306, 8)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_xct2j")
+
+[node name="Score" type="Label" parent="PsudoUI"]
+offset_left = 9.0
+offset_top = -3.0
+offset_right = 96.0
+offset_bottom = 70.0
+text = "888"
+label_settings = SubResource("LabelSettings_lmc72")
+
+[node name="SpawnLaserItem" type="TouchScreenButton" parent="PsudoUI"]
+position = Vector2(125.389, 16.2191)
+texture_normal = ExtResource("7_0aly6")
+
+[node name="SpawnMagnetItem" type="TouchScreenButton" parent="PsudoUI"]
+position = Vector2(213, 16)
+texture_normal = ExtResource("8_mos06")
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Brick Border" type="TileMap" parent="."]
+position = Vector2(5, 0)
+tile_set = SubResource("TileSet_370wu")
+format = 2
+layer_0/tile_data = PackedInt32Array(2555904, 0, 65536, 2490368, 0, 65536, 1048576, 0, 65536, 983040, 0, 65536, 917504, 0, 65536, 851968, 0, 65536, 786432, 0, 65536, 720896, 0, 65536, 655360, 0, 65536, 2621440, 0, 65536, 2686976, 0, 65536, 2752512, 0, 65536, 2818048, 0, 65536, 2883584, 0, 65536, 2949120, 0, 65536, 3014656, 0, 65536, 3080195, 0, 65536, 3080196, 0, 65536, 3080197, 0, 65536, 3080198, 0, 65536, 3080199, 0, 65536, 3080192, 0, 65536, 3080193, 0, 65536, 3080194, 0, 65536, 1114112, 0, 65536, 1179648, 0, 65536, 1245184, 0, 65536, 1310720, 0, 65536, 1376256, 0, 65536, 1441792, 0, 65536, 1507328, 0, 65536, 1572864, 0, 65536, 1638400, 0, 65536, 1703936, 0, 65536, 1769472, 0, 65536, 1835008, 0, 65536, 1900544, 0, 65536, 1966080, 0, 65536, 2031616, 0, 65536, 2097152, 0, 65536, 2162688, 0, 65536, 2228224, 0, 65536, 2293760, 0, 65536, 2359296, 0, 65536, 2424832, 0, 65536, 1114119, 0, 65536, 1048583, 0, 65536, 983047, 0, 65536, 917511, 0, 65536, 851975, 0, 65536, 786439, 0, 65536, 720903, 0, 65536, 655367, 0, 65536, 655361, 0, 65536, 720897, 0, 65536, 786433, 0, 65536, 851969, 0, 65536, 917505, 0, 65536, 983041, 0, 65536, 1048577, 0, 65536, 1114113, 0, 65536, 1179649, 0, 65536, 1245185, 0, 65536, 1310721, 0, 65536, 1376257, 0, 65536, 1441793, 0, 65536, 1507329, 0, 65536, 1572865, 0, 65536, 1638401, 0, 65536, 1703937, 0, 65536, 1769473, 0, 65536, 1835009, 0, 65536, 1900545, 0, 65536, 1966081, 0, 65536, 2031617, 0, 65536, 2097153, 0, 65536, 2162689, 0, 65536, 2228225, 0, 65536, 2293761, 0, 65536, 2359297, 0, 65536, 2424833, 0, 65536, 2490369, 0, 65536, 2555905, 0, 65536, 2621441, 0, 65536, 2686977, 0, 65536, 2752513, 0, 65536, 2818049, 0, 65536, 2883585, 0, 65536, 2949121, 0, 65536, 3014657, 0, 65536, 3014658, 0, 65536, 2949122, 0, 65536, 2883586, 0, 65536, 2818050, 0, 65536, 2752514, 0, 65536, 2686978, 0, 65536, 2621442, 0, 65536, 2555906, 0, 65536, 2490370, 0, 65536, 2424834, 0, 65536, 2359298, 0, 65536, 2293762, 0, 65536, 2228226, 0, 65536, 2162690, 0, 65536, 2097154, 0, 65536, 2031618, 0, 65536, 1966082, 0, 65536, 1900546, 0, 65536, 1835010, 0, 65536, 1769474, 0, 65536, 1703938, 0, 65536, 1638402, 0, 65536, 1572866, 0, 65536, 1507330, 0, 65536, 1441794, 0, 65536, 1376258, 0, 65536, 1310722, 0, 65536, 1245186, 0, 65536, 1179650, 0, 65536, 1114114, 0, 65536, 1048578, 0, 65536, 983042, 0, 65536, 917506, 0, 65536, 851970, 0, 65536, 786434, 0, 65536, 720898, 0, 65536, 655362, 0, 65536, 655363, 0, 65536, 720899, 0, 65536, 786435, 0, 65536, 851971, 0, 65536, 917507, 0, 65536, 983043, 0, 65536, 1048579, 0, 65536, 1114115, 0, 65536, 1179651, 0, 65536, 1245187, 0, 65536, 1310723, 0, 65536, 1376259, 0, 65536, 1441795, 0, 65536, 1507331, 0, 65536, 1572867, 0, 65536, 1638403, 0, 65536, 1703939, 0, 65536, 1769475, 0, 65536, 1835011, 0, 65536, 1900547, 0, 65536, 1966083, 0, 65536, 2031619, 0, 65536, 2097155, 0, 65536, 2162691, 0, 65536, 2228227, 0, 65536, 2293763, 0, 65536, 2359299, 0, 65536, 2424835, 0, 65536, 2490371, 0, 65536, 2555907, 0, 65536, 2621443, 0, 65536, 2686979, 0, 65536, 2752515, 0, 65536, 2818051, 0, 65536, 2883587, 0, 65536, 2949123, 0, 65536, 3014659, 0, 65536, 3014660, 0, 65536, 2949124, 0, 65536, 2883588, 0, 65536, 2818052, 0, 65536, 2752516, 0, 65536, 2686980, 0, 65536, 2621444, 0, 65536, 2555908, 0, 65536, 2490372, 0, 65536, 2424836, 0, 65536, 2359300, 0, 65536, 2293764, 0, 65536, 2228228, 0, 65536, 2162692, 0, 65536, 2097156, 0, 65536, 2031620, 0, 65536, 1966084, 0, 65536, 1900548, 0, 65536, 1835012, 0, 65536, 1769476, 0, 65536, 1703940, 0, 65536, 1638404, 0, 65536, 1572868, 0, 65536, 1507332, 0, 65536, 1441796, 0, 65536, 1376260, 0, 65536, 1310724, 0, 65536, 1245188, 0, 65536, 1179652, 0, 65536, 1114116, 0, 65536, 1048580, 0, 65536, 983044, 0, 65536, 917508, 0, 65536, 851972, 0, 65536, 786436, 0, 65536, 720900, 0, 65536, 655364, 0, 65536, 655365, 0, 65536, 720901, 0, 65536, 786437, 0, 65536, 851973, 0, 65536, 917509, 0, 65536, 983045, 0, 65536, 1048581, 0, 65536, 1114117, 0, 65536, 1179653, 0, 65536, 1245189, 0, 65536, 1310725, 0, 65536, 1376261, 0, 65536, 1441797, 0, 65536, 1507333, 0, 65536, 1572869, 0, 65536, 1638405, 0, 65536, 1703941, 0, 65536, 1769477, 0, 65536, 1835013, 0, 65536, 1900549, 0, 65536, 1966085, 0, 65536, 2031621, 0, 65536, 2097157, 0, 65536, 2162693, 0, 65536, 2228229, 0, 65536, 2293765, 0, 65536, 2359301, 0, 65536, 2424837, 0, 65536, 2490373, 0, 65536, 2555909, 0, 65536, 2621445, 0, 65536, 2686981, 0, 65536, 2752517, 0, 65536, 2818053, 0, 65536, 2883589, 0, 65536, 2949125, 0, 65536, 3014661, 0, 65536, 3014662, 0, 65536, 2949126, 0, 65536, 2883590, 0, 65536, 2818054, 0, 65536, 2752518, 0, 65536, 2686982, 0, 65536, 2621446, 0, 65536, 2555910, 0, 65536, 2490374, 0, 65536, 2424838, 0, 65536, 2359302, 0, 65536, 2293766, 0, 65536, 2228230, 0, 65536, 2162694, 0, 65536, 2097158, 0, 65536, 2031622, 0, 65536, 1966086, 0, 65536, 1900550, 0, 65536, 1835014, 0, 65536, 1769478, 0, 65536, 1703942, 0, 65536, 1638406, 0, 65536, 1572870, 0, 65536, 1507334, 0, 65536, 1441798, 0, 65536, 1376262, 0, 65536, 1310726, 0, 65536, 1245190, 0, 65536, 1179654, 0, 65536, 1114118, 0, 65536, 1048582, 0, 65536, 983046, 0, 65536, 917510, 0, 65536, 851974, 0, 65536, 786438, 0, 65536, 720902, 0, 65536, 655366, 0, 65536, 1179655, 0, 65536, 1245191, 0, 65536, 1310727, 0, 65536, 1376263, 0, 65536, 1441799, 0, 65536, 1507335, 0, 65536, 1572871, 0, 65536, 1638407, 0, 65536, 1703943, 0, 65536, 1769479, 0, 65536, 1835015, 0, 65536, 1900551, 0, 65536, 1966087, 0, 65536, 2031623, 0, 65536, 2097159, 0, 65536, 2162695, 0, 65536, 2228231, 0, 65536, 2293767, 0, 65536, 2359303, 0, 65536, 2424839, 0, 65536, 2490375, 0, 65536, 2555911, 0, 65536, 2621447, 0, 65536, 2686983, 0, 65536, 2752519, 0, 65536, 2818055, 0, 65536, 2883591, 0, 65536, 2949127, 0, 65536, 3014663, 0, 65536, 655368, 0, 65536, 720904, 0, 65536, 786440, 0, 65536, 851976, 0, 65536, 917512, 0, 65536, 983048, 0, 65536, 1048584, 0, 65536, 1114120, 0, 65536, 1179656, 0, 65536, 1245192, 0, 65536, 1310728, 0, 65536, 1376264, 0, 65536, 1441800, 0, 65536, 1507336, 0, 65536, 1572872, 0, 65536, 1638408, 0, 65536, 1703944, 0, 65536, 1769480, 0, 65536, 1835016, 0, 65536, 1900552, 0, 65536, 1966088, 0, 65536, 2031624, 0, 65536, 2097160, 0, 65536, 2162696, 0, 65536, 2228232, 0, 65536, 2293768, 0, 65536, 2359304, 0, 65536, 2424840, 0, 65536, 2490376, 0, 65536, 2555912, 0, 65536, 2621448, 0, 65536, 2686984, 0, 65536, 2752520, 0, 65536, 2818056, 0, 65536, 2883592, 0, 65536, 2949128, 0, 65536, 3014664, 0, 65536, 3080200, 0, 65536)
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("3_diqya")]
+position = Vector2(180, 700)
+
+[node name="Ball" parent="." instance=ExtResource("7_36tih")]
+position = Vector2(192, 674)
+
+[connection signal="body_entered" from="GameOverZone" to="." method="_on_game_over_zone_body_entered"]
+[connection signal="pressed" from="PsudoUI/SpawnLaserItem" to="." method="_on_spawn_laser_item_pressed"]
+[connection signal="pressed" from="PsudoUI/SpawnMagnetItem" to="." method="_on_spawn_magnet_item_pressed"]
+[connection signal="activate_magnet" from="Player" to="." method="_on_player_activate_magnet"]
+[connection signal="laser_fired" from="Player" to="." method="_on_player_laser_fired"]
+[connection signal="ball_touch_player" from="Ball" to="." method="_on_ball_ball_touch_player"]

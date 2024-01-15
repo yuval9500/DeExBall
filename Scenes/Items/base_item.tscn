@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://uc7ws8y4t0vo"]
+
+[ext_resource type="Script" path="res://Scenes/Items/base_item.gd" id="1_3bie1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s2vyx"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jefrc"]
+size = Vector2(30, 30)
+
+[node name="BaseItem" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 17
+physics_material_override = SubResource("PhysicsMaterial_s2vyx")
+gravity_scale = 0.2
+max_contacts_reported = 3
+contact_monitor = true
+script = ExtResource("1_3bie1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jefrc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

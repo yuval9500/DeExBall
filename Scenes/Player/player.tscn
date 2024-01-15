@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://crrgmxhsx4xxj"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_lwu4e"]
+[ext_resource type="Texture2D" uid="uid://ihc8r0pl338g" path="res://Sprites/Player/Player.png" id="1_s4oxx"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 26
+script = ExtResource("1_lwu4e")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-66, -12, 66, -12, 70, -8, 70, 8, 66, 12, -66, 12, -70, 8, -70, -8)
+
+[node name="PlayerImage" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("1_s4oxx")
+
+[node name="Borders" type="Node2D" parent="PlayerImage"]
+
+[node name="LeftPoint" type="Node2D" parent="PlayerImage/Borders"]
+position = Vector2(-70, 0)
+
+[node name="RightPoint" type="Node2D" parent="PlayerImage/Borders"]
+position = Vector2(70, 0)
+
+[node name="LaserPositions" type="Node2D" parent="PlayerImage"]
+position = Vector2(0, 1.5)
+
+[node name="LeftPoint" type="Node2D" parent="PlayerImage/LaserPositions"]
+position = Vector2(-67, -16.5)
+
+[node name="RightPoint" type="Node2D" parent="PlayerImage/LaserPositions"]
+position = Vector2(67, -16.5)
+
+[node name="LaserReloadTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="LaserReloadTimer" to="." method="_on_laser_reload_timer_timeout"]

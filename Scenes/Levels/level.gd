@@ -15,8 +15,10 @@ var is_player_magnet: bool = false
 var is_ball_magnetized: bool = true
 
 @export var ball_speed = 200
-@export var ball_speed_up = 10
-@export var ball_max_speed = 400
+@export var ball_speed_up = 5
+@export var ball_max_speed = 500
+
+@export var item_drop_precent = 2
 
 func _ready():
 	calc_ball_offset()
@@ -42,16 +44,10 @@ func _unhandled_input(event):
 			start_of_game = false
 			is_ball_magnetized = false
 
-func _on_ball_ball_touch_player(ball_direction):
+func _on_ball_touch_player(ball_direction):
 	if (is_player_magnet):
 		is_ball_magnetized = true
 		calc_ball_offset()
-	
-	if ball_speed < ball_max_speed:
-		ball_speed += ball_speed_up
-	else:
-		ball_speed = ball_max_speed
-	
 	$Ball.linear_velocity = ball_direction * ball_speed
 
 func calc_ball_offset():
@@ -63,21 +59,31 @@ func _on_player_activate_magnet():
 
 func _on_game_over_zone_body_entered(body):
 	if (body.collision_layer == ball_collision_level):
-		$Ball.global_position = $Player.global_position + Vector2(1, -20)
+		$Ball.global_position = $Player.global_position + Vector2(3, -20)
+		calc_ball_offset()
 		start_of_game = true
 	else:
 		body.queue_free()
 
 
 func _on_brick_tilemap_child_exiting_tree(node):
-	if(randi() % 100 < 10):
+	if(randi() % 100 < item_drop_precent):
 		var item: BaseItem = pick_item()
 		item.position = node.position
 		$Items.add_child(item)
 
 func pick_item() -> BaseItem:
-	#TODO: make it use precentages for each item
 	var random = randi() % 100
 	if(random < 50):
 		return item_scenes[0].instantiate()
 	return item_scenes[1].instantiate()
+
+
+func _on_ball_speed_up():
+	if ball_speed < ball_max_speed:
+		ball_speed += ball_speed_up
+	else:
+		ball_speed = ball_max_speed
+	
+	
+	print (ball_speed)

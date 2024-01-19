@@ -103,5 +103,3 @@ position = Vector2(192, 674)
 [connection signal="child_exiting_tree" from="Brick Tilemap" to="." method="_on_brick_tilemap_child_exiting_tree"]
 [connection signal="activate_magnet" from="Player" to="." method="_on_player_activate_magnet"]
 [connection signal="laser_fired" from="Player" to="." method="_on_player_laser_fired"]
-[connection signal="speed_up" from="Ball" to="." method="_on_ball_speed_up"]
-[connection signal="touch_player" from="Ball" to="." method="_on_ball_touch_player"]

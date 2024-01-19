@@ -13,4 +13,4 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.collision_layer == 1:
-		print("add signal dummy!")
+		print("add item signal dummy!")

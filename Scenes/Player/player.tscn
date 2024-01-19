@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://crrgmxhsx4xxj"]
+[gd_scene load_steps=5 format=3 uid="uid://crrgmxhsx4xxj"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_lwu4e"]
 [ext_resource type="Texture2D" uid="uid://ihc8r0pl338g" path="res://Sprites/Player/Player.png" id="1_s4oxx"]
+[ext_resource type="Texture2D" uid="uid://b1omm42oam6ii" path="res://Sprites/Particles/white.png" id="3_4qsl8"]
+
+[sub_resource type="Gradient" id="Gradient_0c1y1"]
+offsets = PackedFloat32Array(0.253333, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.792157, 0, 0)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 26
@@ -30,6 +35,23 @@ position = Vector2(-67, -16.5)
 
 [node name="RightPoint" type="Node2D" parent="PlayerImage/LaserPositions"]
 position = Vector2(67, -16.5)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="PlayerImage/LaserPositions"]
+position = Vector2(-67, -16.5)
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_4qsl8")
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+direction = Vector2(10, -10)
+spread = 180.0
+gravity = Vector2(0, -50)
+initial_velocity_max = 50.0
+scale_amount_min = 0.05
+scale_amount_max = 0.07
+color_ramp = SubResource("Gradient_0c1y1")
 
 [node name="LaserReloadTimer" type="Timer" parent="."]
 wait_time = 0.2

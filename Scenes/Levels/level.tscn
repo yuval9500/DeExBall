@@ -1,13 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwh3bvqd6idbr"]
+[gd_scene load_steps=13 format=3 uid="uid://bwh3bvqd6idbr"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/level.gd" id="1_f141i"]
 [ext_resource type="Texture2D" uid="uid://2x0gydhkjilw" path="res://Sprites/UI/Background.png" id="1_rrpw8"]
 [ext_resource type="PackedScene" uid="uid://j501bbp4p3ss" path="res://Scenes/Blocks/block.tscn" id="3_35t3d"]
 [ext_resource type="PackedScene" uid="uid://crrgmxhsx4xxj" path="res://Scenes/Player/player.tscn" id="3_diqya"]
 [ext_resource type="Texture2D" uid="uid://ihc8r0pl338g" path="res://Sprites/Player/Player.png" id="3_xct2j"]
-[ext_resource type="Texture2D" uid="uid://cocvv0b3ntifq" path="res://Sprites/Items/Laser.png" id="7_0aly6"]
 [ext_resource type="PackedScene" uid="uid://c22s8buq55iyt" path="res://Scenes/Ball/ball.tscn" id="7_36tih"]
-[ext_resource type="Texture2D" uid="uid://14ei2quonylq" path="res://Sprites/Items/Magnet.png" id="8_mos06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cencu"]
 size = Vector2(20, 800)
@@ -81,14 +79,6 @@ offset_bottom = 70.0
 text = "888"
 label_settings = SubResource("LabelSettings_lmc72")
 
-[node name="SpawnLaserItem" type="TouchScreenButton" parent="PsudoUI"]
-position = Vector2(125.389, 16.2191)
-texture_normal = ExtResource("7_0aly6")
-
-[node name="SpawnMagnetItem" type="TouchScreenButton" parent="PsudoUI"]
-position = Vector2(213, 16)
-texture_normal = ExtResource("8_mos06")
-
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Brick Tilemap" type="TileMap" parent="."]
@@ -110,8 +100,6 @@ position = Vector2(180, 700)
 position = Vector2(192, 674)
 
 [connection signal="body_entered" from="GameOverZone" to="." method="_on_game_over_zone_body_entered"]
-[connection signal="pressed" from="PsudoUI/SpawnLaserItem" to="." method="_on_spawn_laser_item_pressed"]
-[connection signal="pressed" from="PsudoUI/SpawnMagnetItem" to="." method="_on_spawn_magnet_item_pressed"]
 [connection signal="child_exiting_tree" from="Brick Tilemap" to="." method="_on_brick_tilemap_child_exiting_tree"]
 [connection signal="activate_magnet" from="Player" to="." method="_on_player_activate_magnet"]
 [connection signal="laser_fired" from="Player" to="." method="_on_player_laser_fired"]

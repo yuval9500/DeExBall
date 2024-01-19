@@ -4,7 +4,8 @@ var laser_scene: PackedScene = preload("res://Scenes/Player/laser.tscn")
 var laser_item_scene: PackedScene = preload("res://Scenes/Items/laser_item.tscn")
 var magnet_item_scene: PackedScene = preload("res://Scenes/Items/magnet_item.tscn")
 
-#var item_scenes: [PackedScene] = [preload("res://Scenes/Items/laser_item.tscn")]
+var item_scenes: Array[PackedScene] = [preload("res://Scenes/Items/laser_item.tscn"),
+										preload("res://Scenes/Items/magnet_item.tscn")]
 
 var ball_collision_level = 2
 
@@ -60,18 +61,6 @@ func _on_player_activate_magnet():
 	is_player_magnet = true
 
 
-func _on_spawn_laser_item_pressed():
-	var laser_item = laser_item_scene.instantiate()
-	laser_item.global_position = Vector2(140, 170)
-	add_child(laser_item)
-
-
-func _on_spawn_magnet_item_pressed():
-	var magnet_item = magnet_item_scene.instantiate()
-	magnet_item.global_position = Vector2(230, 170)
-	add_child(magnet_item)
-
-
 func _on_game_over_zone_body_entered(body):
 	if (body.collision_layer == ball_collision_level):
 		$Ball.global_position = $Player.global_position + Vector2(1, -20)
@@ -81,4 +70,14 @@ func _on_game_over_zone_body_entered(body):
 
 
 func _on_brick_tilemap_child_exiting_tree(node):
-	pass # Replace with function body.
+	if(randi() % 100 < 10):
+		var item: BaseItem = pick_item()
+		item.position = node.position
+		$Items.add_child(item)
+
+func pick_item() -> BaseItem:
+	#TODO: make it use precentages for each item
+	var random = randi() % 100
+	if(random < 50):
+		return item_scenes[0].instantiate()
+	return item_scenes[1].instantiate()

@@ -11,11 +11,11 @@ var ball_collision_level = 2
 
 var start_of_game: bool = true
 var offset
-var is_player_magnet: bool = false
+@export var is_player_magnet: bool = false
 var is_ball_magnetized: bool = true
 
-@export var ball_speed = 200
-@export var ball_speed_up = 5
+@export var ball_speed = 250
+@export var ball_speed_up = 10
 @export var ball_max_speed = 500
 
 @export var item_drop_precent = 2
@@ -45,7 +45,7 @@ func _unhandled_input(event):
 			is_ball_magnetized = false
 
 func _on_ball_touch_player(ball_direction):
-	if (is_player_magnet):
+	if (is_player_magnet && $Ball.position.y < $Player.position.y - 5):
 		is_ball_magnetized = true
 		calc_ball_offset()
 	$Ball.linear_velocity = ball_direction * ball_speed
@@ -59,7 +59,7 @@ func _on_player_activate_magnet():
 
 func _on_game_over_zone_body_entered(body):
 	if (body.collision_layer == ball_collision_level):
-		$Ball.global_position = $Player.global_position + Vector2(5, -20)
+		$Ball.global_position = $Player.global_position + Vector2(5, -25)
 		calc_ball_offset()
 		start_of_game = true
 	else:

@@ -1,18 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b05gdroe68ss4"]
+[gd_scene load_steps=3 format=3 uid="uid://b05gdroe68ss4"]
 
 [ext_resource type="Texture2D" uid="uid://cjdo3tpgd74hu" path="res://Sprites/Player/Laser.png" id="1_2ddkj"]
 [ext_resource type="Script" path="res://Scenes/Player/laser.gd" id="1_tkk3i"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f31am"]
-size = Vector2(3, 10)
 
 [node name="Laser" type="Area2D"]
 collision_layer = 32
 collision_mask = 20
 script = ExtResource("1_tkk3i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_f31am")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-2, -5, -2, 5, 1, 5, 1, -5)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_2ddkj")

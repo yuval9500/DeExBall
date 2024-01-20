@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://Scenes/Blocks/block.gd" id="1_epjwv"]
 [ext_resource type="Texture2D" uid="uid://b3u37tb173njl" path="res://Sprites/Blocks/block.png" id="1_vg1ba"]
 
-[node name="Block" type="StaticBody2D"]
+[node name="BaseBlock" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 34
 script = ExtResource("1_epjwv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-18, -6, 17, -6, 17, 6, -18, 6)
+polygon = PackedVector2Array(-18, -8, 17, -8, 17, 7, -18, 7)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_vg1ba")

@@ -59,7 +59,7 @@ func _on_player_activate_magnet():
 
 func _on_game_over_zone_body_entered(body):
 	if (body.collision_layer == ball_collision_level):
-		$Ball.global_position = $Player.global_position + Vector2(3, -20)
+		$Ball.global_position = $Player.global_position + Vector2(5, -20)
 		calc_ball_offset()
 		start_of_game = true
 	else:
@@ -84,6 +84,3 @@ func _on_ball_speed_up():
 		ball_speed += ball_speed_up
 	else:
 		ball_speed = ball_max_speed
-	
-	
-	print (ball_speed)

@@ -9,7 +9,7 @@ var input_cur_pos: Vector2
 var input_distance: float
 var player_start_pos: Vector2
 
-var can_laser: bool = false
+@export var can_laser: bool = false
 signal laser_fired(laser_positions: Array[Node])
 
 signal activate_magnet
@@ -63,8 +63,12 @@ func shoot_laser():
 	var positions = $PlayerImage/LaserPositions
 	var laser_positions = positions.get_children()
 	$LaserReloadTimer.start()
-	#$LaserParticles.restart()
+	play_laser_particles()
 	laser_fired.emit(laser_positions)
+
+func play_laser_particles():
+	$PlayerImage/LaserPositions/LeftParticle.restart()
+	$PlayerImage/LaserPositions/RightParticle.restart()
 
 func _on_laser_reload_timer_timeout():
 	can_laser = true

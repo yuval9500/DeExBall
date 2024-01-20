@@ -21,9 +21,8 @@ func _on_body_entered(body):
 		
 		touch_player.emit(ball_direction)
 	
-	if body.collision_layer != border_collision_layer:
-		if (touch_counter == 10):
-			speed_up.emit()
-			touch_counter = 0
-		else:
-			touch_counter += 1
+	if (touch_counter == 10):
+		speed_up.emit()
+		touch_counter = 0
+	else:
+		touch_counter += 1

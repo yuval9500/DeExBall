@@ -31,7 +31,6 @@ sources/0 = SubResource("TileSetScenesCollectionSource_jrivr")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_f141i")
-item_drop_precent = 3
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(180, 400)

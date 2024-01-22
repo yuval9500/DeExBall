@@ -100,7 +100,9 @@ position = Vector2(192, 675)
 
 [connection signal="body_entered" from="GameOverZone" to="." method="_on_game_over_zone_body_entered"]
 [connection signal="child_exiting_tree" from="BrickTilemap" to="." method="_on_brick_tilemap_child_exiting_tree"]
+[connection signal="activate_boom" from="Player" to="." method="_on_player_activate_boom"]
 [connection signal="activate_magnet" from="Player" to="." method="_on_player_activate_magnet"]
+[connection signal="activate_slow_slow" from="Player" to="." method="_on_player_activate_slow_slow"]
 [connection signal="laser_fired" from="Player" to="." method="_on_player_laser_fired"]
 [connection signal="speed_up" from="Ball" to="." method="_on_ball_speed_up"]
 [connection signal="touch_player" from="Ball" to="." method="_on_ball_touch_player"]

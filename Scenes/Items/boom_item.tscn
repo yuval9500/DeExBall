@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkjateu76p6m1"]
+
+[ext_resource type="PackedScene" uid="uid://uc7ws8y4t0vo" path="res://Scenes/Items/base_item.tscn" id="1_sv8gr"]
+[ext_resource type="Script" path="res://Scenes/Items/boom_item.gd" id="2_75uv8"]
+[ext_resource type="Texture2D" uid="uid://c7botej17lbes" path="res://Sprites/Items/Boom.png" id="3_rqf5j"]
+
+[node name="BoomItem" instance=ExtResource("1_sv8gr")]
+script = ExtResource("2_75uv8")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_rqf5j")

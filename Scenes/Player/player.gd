@@ -10,9 +10,11 @@ var input_distance: float
 var player_start_pos: Vector2
 
 @export var can_laser: bool = false
-signal laser_fired(laser_positions: Array[Node])
 
+signal laser_fired(laser_positions: Array[Node])
 signal activate_magnet
+signal activate_boom
+signal activate_slow_slow
 
 func _ready():
 	pass
@@ -51,13 +53,6 @@ func keep_player_in_bounds():
 		input_start_pos = input_cur_pos
 		player_start_pos = global_position
 
-func enter_shooting_mode():
-	$PlayerImage.texture = load("res://Sprites/Player/PlayerLaser.png")
-	$LaserReloadTimer.start()
-
-func magnet_pickup():
-	activate_magnet.emit()
-
 func shoot_laser():
 	can_laser = false
 	var positions = $PlayerImage/LaserPositions
@@ -73,5 +68,17 @@ func play_laser_particles():
 func _on_laser_reload_timer_timeout():
 	can_laser = true
 
-func _on_touch_screen_button_pressed():
-	enter_shooting_mode()
+#Item Pickups
+
+func laser_pickup():
+	$PlayerImage.texture = load("res://Sprites/Player/PlayerLaser.png")
+	$LaserReloadTimer.start()
+
+func magnet_pickup():
+	activate_magnet.emit()
+
+func boom_pickup():
+	activate_boom.emit()
+
+func slow_slow_pickup():
+	activate_slow_slow.emit()

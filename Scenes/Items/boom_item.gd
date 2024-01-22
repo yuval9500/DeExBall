@@ -1,5 +1,5 @@
 extends BaseItem
 
 func _ready():
-	item_pickup = "magnet_pickup"
+	item_pickup = "boom_pickup"
 	super._ready()

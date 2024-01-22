@@ -5,7 +5,9 @@ var laser_item_scene: PackedScene = preload("res://Scenes/Items/laser_item.tscn"
 var magnet_item_scene: PackedScene = preload("res://Scenes/Items/magnet_item.tscn")
 
 var item_scenes: Array[PackedScene] = [preload("res://Scenes/Items/laser_item.tscn"),
-										preload("res://Scenes/Items/magnet_item.tscn")]
+										preload("res://Scenes/Items/magnet_item.tscn"),
+										preload("res://Scenes/Items/boom_item.tscn"),
+										preload("res://Scenes/Items/slow_slow_item.tscn")]
 
 var ball_collision_level = 2
 
@@ -14,7 +16,8 @@ var offset
 @export var is_player_magnet: bool = false
 var is_ball_magnetized: bool = true
 
-@export var ball_speed = 250
+@export var ball_start_speed = 250
+@export var ball_speed = 400
 @export var ball_speed_up = 10
 @export var ball_max_speed = 500
 
@@ -48,14 +51,13 @@ func _on_ball_touch_player(ball_direction):
 	if (is_player_magnet && $Ball.position.y < $Player.position.y - 5):
 		is_ball_magnetized = true
 		calc_ball_offset()
+	update_ball_velocity(ball_direction)
+
+func update_ball_velocity(ball_direction: Vector2):
 	$Ball.linear_velocity = ball_direction * ball_speed
 
 func calc_ball_offset():
 	offset = $Ball.global_position.x - $Player.global_position.x
-
-func _on_player_activate_magnet():
-	is_player_magnet = true
-
 
 func _on_game_over_zone_body_entered(body):
 	if (body.collision_layer == ball_collision_level):
@@ -65,6 +67,13 @@ func _on_game_over_zone_body_entered(body):
 	else:
 		body.queue_free()
 
+func _on_ball_speed_up():
+	if ball_speed < ball_max_speed:
+		ball_speed += ball_speed_up
+	else:
+		ball_speed = ball_max_speed
+
+#Spawn Item
 
 func _on_brick_tilemap_child_exiting_tree(node):
 	if(randi() % 100 < item_drop_precent):
@@ -74,13 +83,25 @@ func _on_brick_tilemap_child_exiting_tree(node):
 
 func pick_item() -> BaseItem:
 	var random = randi() % 100
-	if(random < 50):
-		return item_scenes[0].instantiate()
-	return item_scenes[1].instantiate()
+	var n = 100 / item_scenes.size()
+	
+	for i in range(item_scenes.size()):
+		if(random < (i+1) * n):
+			return item_scenes[i].instantiate()
+	return item_scenes.back().instantiate()
+
+#Item Pickups
+
+func _on_player_activate_magnet():
+	is_player_magnet = true
+
+func _on_player_activate_boom():
+	var blocks = $BrickTilemap.get_children()
+	for block in blocks:
+		if "explode" in block:
+			block.explode()
 
 
-func _on_ball_speed_up():
-	if ball_speed < ball_max_speed:
-		ball_speed += ball_speed_up
-	else:
-		ball_speed = ball_max_speed
+func _on_player_activate_slow_slow():
+	ball_speed = ball_start_speed
+	update_ball_velocity($Ball.linear_velocity.normalized())

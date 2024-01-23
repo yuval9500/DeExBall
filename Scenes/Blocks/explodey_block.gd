@@ -4,13 +4,12 @@ func hit():
 	$AnimationPlayer.play("explode")
 
 func explode():
-	for block in get_neighbors():
+	for block in get_surrounding_blocks():
 		if ("hit" in block):
 			block.hit()
 
-func get_neighbors():
+func get_surrounding_blocks():
 	var tilemap: Array[Node] = get_parent().get_children()
-	tilemap.sort()
 	var neighbors: Array[Node] = []
 	
 	for tile in tilemap:
@@ -29,3 +28,7 @@ func is_tile_neighbor(tile: Node):
 	if (possible_x.has(tile.position.x) and possible_y.has(tile.position.y) and tile != self):
 		return true
 	return false
+
+func restart_animation():
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("idle")

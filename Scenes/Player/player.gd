@@ -15,6 +15,7 @@ signal laser_fired(laser_positions: Array[Node])
 signal activate_magnet
 signal activate_boom
 signal activate_slow_slow
+signal activate_explode_mult
 
 func _ready():
 	pass
@@ -82,3 +83,6 @@ func boom_pickup():
 
 func slow_slow_pickup():
 	activate_slow_slow.emit()
+
+func explode_mult_pickup():
+	activate_explode_mult.emit()

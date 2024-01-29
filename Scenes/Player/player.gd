@@ -8,6 +8,8 @@ var input_start_pos: Vector2
 var input_cur_pos: Vector2
 var input_distance: float
 var player_start_pos: Vector2
+var max_player_scale: float = 2
+var min_player_scale: float = 0.25
 
 @export var can_laser: bool = false
 
@@ -16,6 +18,7 @@ signal activate_magnet
 signal activate_boom
 signal activate_slow_slow
 signal activate_explode_mult
+signal activate_penetrating_ball
 
 func _ready():
 	pass
@@ -86,3 +89,22 @@ func slow_slow_pickup():
 
 func explode_mult_pickup():
 	activate_explode_mult.emit()
+
+func penetrating_ball_pickup():
+	activate_penetrating_ball.emit()
+
+func expand_player_pickup():
+	if(scale.x >= 1):
+		scale.x += 0.5
+		if(scale.x > max_player_scale):
+			scale.x = max_player_scale
+	else:
+		scale.x += 0.25
+
+func shrink_player_pickup():
+	if(scale.x > 1):
+		scale.x -= 0.5
+	else:
+		scale.x -= 0.25
+		if(scale.x < min_player_scale):
+			scale.x = min_player_scale

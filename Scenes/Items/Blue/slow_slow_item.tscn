@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c14q3bm6u1aai"]
 
 [ext_resource type="PackedScene" uid="uid://uc7ws8y4t0vo" path="res://Scenes/Items/base_item.tscn" id="1_pq070"]
-[ext_resource type="Script" path="res://Scenes/Items/slow_slow_item.gd" id="2_3fovd"]
-[ext_resource type="Texture2D" uid="uid://dw0dkwxwfgqyd" path="res://Sprites/Items/SlowBall.png" id="2_5i2x2"]
+[ext_resource type="Script" path="res://Scenes/Items/Blue/slow_slow_item.gd" id="2_3fovd"]
+[ext_resource type="Texture2D" uid="uid://dw0dkwxwfgqyd" path="res://Sprites/Items/Blue/SlowBall.png" id="2_5i2x2"]
 
 [node name="SlowSlowItem" instance=ExtResource("1_pq070")]
 script = ExtResource("2_3fovd")

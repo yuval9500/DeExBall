@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7botej17lbes"
-path="res://.godot/imported/Boom.png-99235573fb5519a1d027beb86e4f910e.ctex"
+uid="uid://bssjsf0fpr7jn"
+path="res://.godot/imported/shrink.png-530d1a7e2f59140807954debff2c9068.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/Boom.png"
-dest_files=["res://.godot/imported/Boom.png-99235573fb5519a1d027beb86e4f910e.ctex"]
+source_file="res://Sprites/Items/Gray/shrink.png"
+dest_files=["res://.godot/imported/shrink.png-530d1a7e2f59140807954debff2c9068.ctex"]
 
 [params]
 

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1frtdqpcrsnd"]
+
+[ext_resource type="PackedScene" uid="uid://uc7ws8y4t0vo" path="res://Scenes/Items/base_item.tscn" id="1_frnyd"]
+[ext_resource type="Texture2D" uid="uid://ctvek06eu07np" path="res://Sprites/Items/Blue/PenetratingBall.png" id="2_0sw2q"]
+[ext_resource type="Script" path="res://Scenes/Items/Blue/penetrating_ball_item.gd" id="2_xyndf"]
+
+[node name="PenetratingBallItem" instance=ExtResource("1_frnyd")]
+script = ExtResource("2_xyndf")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_0sw2q")

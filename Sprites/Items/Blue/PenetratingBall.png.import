@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw0dkwxwfgqyd"
-path="res://.godot/imported/SlowBall.png-2231299019467272226833511273e5ef.ctex"
+uid="uid://ctvek06eu07np"
+path="res://.godot/imported/PenetratingBall.png-43a2e6a5115d0916ba1ee8249f7607b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/SlowBall.png"
-dest_files=["res://.godot/imported/SlowBall.png-2231299019467272226833511273e5ef.ctex"]
+source_file="res://Sprites/Items/Blue/PenetratingBall.png"
+dest_files=["res://.godot/imported/PenetratingBall.png-43a2e6a5115d0916ba1ee8249f7607b2.ctex"]
 
 [params]
 

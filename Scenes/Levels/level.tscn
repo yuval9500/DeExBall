@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://crrgmxhsx4xxj" path="res://Scenes/Player/player.tscn" id="3_diqya"]
 [ext_resource type="Texture2D" uid="uid://ihc8r0pl338g" path="res://Sprites/Player/Player.png" id="3_xct2j"]
 [ext_resource type="PackedScene" uid="uid://dhfnisn6feahh" path="res://Scenes/Blocks/explodey_block.tscn" id="4_hf24k"]
-[ext_resource type="PackedScene" uid="uid://d2f512gl7f61n" path="res://Scenes/Items/explode_mult_item.tscn" id="6_fut24"]
+[ext_resource type="PackedScene" uid="uid://djdli8ism2k7b" path="res://Scenes/Items/Gray/shrink_player_item.tscn" id="6_em8h7"]
 [ext_resource type="PackedScene" uid="uid://c22s8buq55iyt" path="res://Scenes/Ball/ball.tscn" id="7_36tih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cencu"]
@@ -91,8 +91,8 @@ layer_0/tile_data = PackedInt32Array(1572864, 0, 65536, 1507328, 0, 131072, 1441
 
 [node name="Items" type="Node2D" parent="."]
 
-[node name="ExplodeMultItem" parent="Items" instance=ExtResource("6_fut24")]
-position = Vector2(183, 437)
+[node name="ShrinkPlayerItem" parent="Items" instance=ExtResource("6_em8h7")]
+position = Vector2(192, 511)
 
 [node name="Player" parent="." instance=ExtResource("3_diqya")]
 position = Vector2(180, 700)
@@ -105,6 +105,7 @@ position = Vector2(192, 675)
 [connection signal="activate_boom" from="Player" to="." method="_on_player_activate_boom"]
 [connection signal="activate_explode_mult" from="Player" to="." method="_on_player_activate_explode_mult"]
 [connection signal="activate_magnet" from="Player" to="." method="_on_player_activate_magnet"]
+[connection signal="activate_penetrating_ball" from="Player" to="." method="_on_player_activate_penetrating_ball"]
 [connection signal="activate_slow_slow" from="Player" to="." method="_on_player_activate_slow_slow"]
 [connection signal="laser_fired" from="Player" to="." method="_on_player_laser_fired"]
 [connection signal="speed_up" from="Ball" to="." method="_on_ball_speed_up"]

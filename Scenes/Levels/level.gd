@@ -3,13 +3,17 @@ extends Node2D
 var laser_scene: PackedScene = preload("res://Scenes/Player/laser.tscn")
 var explode_block_scene: PackedScene = preload("res://Scenes/Blocks/explodey_block.tscn")
 
-var item_scenes: Array[PackedScene] = [preload("res://Scenes/Items/laser_item.tscn"),
-										preload("res://Scenes/Items/magnet_item.tscn"),
-										preload("res://Scenes/Items/boom_item.tscn"),
-										preload("res://Scenes/Items/slow_slow_item.tscn"),
-										preload("res://Scenes/Items/explode_mult_item.tscn")]
+var item_scenes: Array[PackedScene] = [preload("res://Scenes/Items/Blue/laser_item.tscn"),
+										preload("res://Scenes/Items/Blue/magnet_item.tscn"),
+										preload("res://Scenes/Items/Blue/boom_item.tscn"),
+										preload("res://Scenes/Items/Blue/slow_slow_item.tscn"),
+										preload("res://Scenes/Items/Blue/explode_mult_item.tscn"),
+										preload("res://Scenes/Items/Blue/penetrating_ball_item.tscn"),
+										preload("res://Scenes/Items/Gray/expand_player_item.tscn"),
+										preload("res://Scenes/Items/Gray/shrink_player_item.tscn")]
 
-var ball_collision_level = 2
+var ball_collision_layer = 2
+var blocks_collision_layer_bit = 3
 var tilemap_layer = 0
 
 var start_of_game: bool = true
@@ -61,7 +65,7 @@ func calc_ball_offset():
 	offset = $Ball.global_position.x - $Player.global_position.x
 
 func _on_game_over_zone_body_entered(body):
-	if (body.collision_layer == ball_collision_level):
+	if (body.collision_layer == ball_collision_layer):
 		$Ball.global_position = $Player.global_position + Vector2(5, -25)
 		calc_ball_offset()
 		start_of_game = true
@@ -159,3 +163,7 @@ func is_tile_neighbor(base_position: Vector2, tile_position: Vector2):
 	or (possible_y.has(tile_position.y) and tile_position.x == base_position.x)):
 		return true
 	return false
+
+
+func _on_player_activate_penetrating_ball():
+	$Ball.set_collision_mask_value(blocks_collision_layer_bit, false)

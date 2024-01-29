@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvh06uy5x21ch"
-path="res://.godot/imported/Multiply.png-346a2237fb2cb46be473329dcfb41763.ctex"
+uid="uid://14ei2quonylq"
+path="res://.godot/imported/Magnet.png-133cce53c7ce8e6fa22330d8e1b6b38f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/Multiply.png"
-dest_files=["res://.godot/imported/Multiply.png-346a2237fb2cb46be473329dcfb41763.ctex"]
+source_file="res://Sprites/Items/Blue/Magnet.png"
+dest_files=["res://.godot/imported/Magnet.png-133cce53c7ce8e6fa22330d8e1b6b38f.ctex"]
 
 [params]
 

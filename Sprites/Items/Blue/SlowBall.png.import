@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cocvv0b3ntifq"
-path="res://.godot/imported/Laser.png-37926aff4d30faa67f2ce1662d0bcf19.ctex"
+uid="uid://dw0dkwxwfgqyd"
+path="res://.godot/imported/SlowBall.png-eb6300a00be2fb1025da5f0128eb57cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/Laser.png"
-dest_files=["res://.godot/imported/Laser.png-37926aff4d30faa67f2ce1662d0bcf19.ctex"]
+source_file="res://Sprites/Items/Blue/SlowBall.png"
+dest_files=["res://.godot/imported/SlowBall.png-eb6300a00be2fb1025da5f0128eb57cd.ctex"]
 
 [params]
 

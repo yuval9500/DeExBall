@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://djdli8ism2k7b"]
+
+[ext_resource type="PackedScene" uid="uid://uc7ws8y4t0vo" path="res://Scenes/Items/base_item.tscn" id="1_da48n"]
+[ext_resource type="Script" path="res://Scenes/Items/Gray/shrink_player_item.gd" id="2_m41x1"]
+[ext_resource type="Texture2D" uid="uid://bssjsf0fpr7jn" path="res://Sprites/Items/Gray/shrink.png" id="3_i6k03"]
+
+[node name="ShrinkPlayerItem" instance=ExtResource("1_da48n")]
+script = ExtResource("2_m41x1")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_i6k03")
